@@ -1,0 +1,417 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/forms";
+@plugin '@tailwindcss/typography';
+@source '../node_modules/pliny';
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Import Google Fonts for Mindmire theme */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&display=swap');
+
+/* Core theme configuration */
+@theme {
+  /* Font families for Mindmire theme */
+  --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: 'Lora', Georgia, serif;
+  --font-display: 'Caveat', cursive;
+
+  /* Swampy color palette */
+  /* Deep greens for primary swamp theme */
+  --color-primary-50: oklch(0.95 0.02 140);
+  --color-primary-100: oklch(0.89 0.04 142);
+  --color-primary-200: oklch(0.79 0.08 144);
+  --color-primary-300: oklch(0.68 0.13 146);
+  --color-primary-400: oklch(0.58 0.18 148);
+  --color-primary-500: oklch(0.48 0.23 150);
+  --color-primary-600: oklch(0.38 0.2 152);
+  --color-primary-700: oklch(0.28 0.17 154);
+  --color-primary-800: oklch(0.19 0.14 156);
+  --color-primary-900: oklch(0.12 0.11 158);
+  --color-primary-950: oklch(0.08 0.08 160);
+
+  /* Murky browns and amber for accent colors */
+  --color-amber-50: oklch(0.97 0.02 75);
+  --color-amber-100: oklch(0.93 0.05 70);
+  --color-amber-200: oklch(0.86 0.1 65);
+  --color-amber-300: oklch(0.78 0.15 60);
+  --color-amber-400: oklch(0.69 0.2 55);
+  --color-amber-500: oklch(0.6 0.25 50);
+  --color-amber-600: oklch(0.51 0.22 45);
+  --color-amber-700: oklch(0.42 0.19 40);
+  --color-amber-800: oklch(0.33 0.16 35);
+  --color-amber-900: oklch(0.24 0.13 30);
+  --color-amber-950: oklch(0.15 0.1 25);
+
+  /* Enhanced grays for muddy textures */
+  --color-gray-50: oklch(0.985 0.002 247.839);
+  --color-gray-100: oklch(0.967 0.003 264.542);
+  --color-gray-200: oklch(0.928 0.006 264.531);
+  --color-gray-300: oklch(0.872 0.01 258.338);
+  --color-gray-400: oklch(0.707 0.022 261.325);
+  --color-gray-500: oklch(0.551 0.027 264.364);
+  --color-gray-600: oklch(0.446 0.03 256.802);
+  --color-gray-700: oklch(0.373 0.034 259.733);
+  --color-gray-800: oklch(0.278 0.033 256.848);
+  --color-gray-900: oklch(0.21 0.034 264.665);
+  --color-gray-950: oklch(0.13 0.028 261.692);
+
+  /* Deep forest green variations */
+  --color-green-50: oklch(0.97 0.02 140);
+  --color-green-100: oklch(0.92 0.04 142);
+  --color-green-200: oklch(0.84 0.08 144);
+  --color-green-300: oklch(0.74 0.13 146);
+  --color-green-400: oklch(0.63 0.18 148);
+  --color-green-500: oklch(0.52 0.23 150);
+  --color-green-600: oklch(0.41 0.2 152);
+  --color-green-700: oklch(0.31 0.17 154);
+  --color-green-800: oklch(0.22 0.14 156);
+  --color-green-900: oklch(0.15 0.11 158);
+  --color-green-950: oklch(0.1 0.08 160);
+
+  /* Line heights */
+  --line-height-11: 2.75rem;
+  --line-height-12: 3rem;
+  --line-height-13: 3.25rem;
+  --line-height-14: 3.5rem;
+
+  /* Z-index values */
+  --z-60: 60;
+  --z-70: 70;
+  --z-80: 80;
+
+  /* Custom border radius for organic feel */
+  --radius-organic: 0.75rem;
+  --radius-irregular: 0.5rem 1rem 0.75rem 0.25rem;
+
+  /* Custom shadows for depth */
+  --shadow-mire: 0 4px 6px -1px rgba(22, 78, 99, 0.1), 0 2px 4px -1px rgba(22, 78, 99, 0.06);
+  --shadow-mire-lg: 0 10px 15px -3px rgba(22, 78, 99, 0.1), 0 4px 6px -2px rgba(22, 78, 99, 0.05);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  /* Custom body styling for swampy feel */
+  body {
+    background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-green-50) 100%);
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, var(--color-gray-950) 0%, var(--color-green-950) 100%);
+  }
+
+  a,
+  button {
+    outline-color: var(--color-primary-500);
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid;
+    border-radius: var(--radius-sm);
+    outline-color: var(--color-primary-500);
+  }
+
+  /* Custom heading styles with Caveat font */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Custom component styles for Mindmire theme */
+@layer components {
+  .mire-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--color-green-200);
+    border-radius: 8px;
+    box-shadow:
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+
+  .mire-card:hover {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-color: var(--color-green-300);
+  }
+
+  .dark .mire-card {
+    background-color: rgba(17, 24, 39, 0.8);
+    border-color: var(--color-green-800);
+  }
+
+  .dark .mire-card:hover {
+    border-color: var(--color-green-700);
+  }
+
+  .mire-card-featured {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: 2px solid var(--color-green-300);
+    border-radius: 8px;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+
+  .mire-card-featured:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .mire-card-featured {
+    background-color: rgba(17, 24, 39, 0.8);
+    border-color: var(--color-green-700);
+  }
+
+  .mire-button {
+    background-color: var(--color-green-600);
+    color: white;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    border: 1px solid var(--color-green-700);
+  }
+
+  .mire-button:hover {
+    background-color: var(--color-green-700);
+    border-color: var(--color-green-800);
+  }
+
+  .mire-button-secondary {
+    background-color: var(--color-amber-100);
+    color: var(--color-amber-900);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    border: 1px solid var(--color-amber-300);
+  }
+
+  .mire-button-secondary:hover {
+    background-color: var(--color-amber-200);
+    border-color: var(--color-amber-400);
+  }
+
+  .mire-tag {
+    background-color: var(--color-green-100);
+    color: var(--color-green-800);
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--color-green-200);
+    transition: background-color 0.2s ease;
+  }
+
+  .mire-tag:hover {
+    background-color: var(--color-green-200);
+  }
+
+  .dark .mire-tag {
+    background-color: var(--color-green-900);
+    color: var(--color-green-200);
+    border-color: var(--color-green-800);
+  }
+
+  .dark .mire-tag:hover {
+    background-color: var(--color-green-800);
+  }
+
+  .wavy-divider {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--color-green-300), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wavy-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      var(--color-green-400) 10px,
+      var(--color-green-400) 20px
+    );
+    animation: wave 3s linear infinite;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+}
+
+@layer utilities {
+  .prose {
+    & a {
+      color: var(--color-primary-600);
+      &:hover {
+        color: var(--color-primary-700);
+      }
+      & code {
+        color: var(--color-primary-500);
+      }
+    }
+    & :where(h1, h2) {
+      font-weight: 700;
+      letter-spacing: var(--tracking-tight);
+      font-family: var(--font-display);
+    }
+    & h3 {
+      font-weight: 600;
+      font-family: var(--font-display);
+    }
+    & h4,
+    h5,
+    h6 {
+      font-family: var(--font-serif);
+    }
+    & :where(code):not(pre code) {
+      color: var(--color-amber-700);
+      background-color: var(--color-amber-50);
+      padding: 0.125rem 0.25rem;
+      border-radius: 0.25rem;
+      font-size: 0.875em;
+    }
+    & blockquote {
+      border-left: 4px solid var(--color-green-400);
+      background: var(--color-green-50);
+      font-style: italic;
+    }
+  }
+
+  .prose-invert {
+    & a {
+      color: var(--color-primary-400);
+      &:hover {
+        color: var(--color-primary-300);
+      }
+      & code {
+        color: var(--color-primary-400);
+      }
+    }
+    & :where(h1, h2, h3, h4, h5, h6) {
+      color: var(--color-gray-100);
+    }
+    & :where(code):not(pre code) {
+      color: var(--color-amber-300);
+      background-color: var(--color-amber-900);
+    }
+    & blockquote {
+      border-left: 4px solid var(--color-green-600);
+      background: var(--color-green-900);
+    }
+  }
+
+  /* Utility for organic text shadows */
+  .text-shadow-mire {
+    text-shadow: 1px 1px 2px rgba(22, 78, 99, 0.3);
+  }
+
+  /* Utility for muddy texture background */
+  .bg-muddy {
+    background-image: radial-gradient(
+        circle at 20% 50%,
+        rgba(22, 78, 99, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(circle at 80% 80%, rgba(133, 77, 14, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 20%, rgba(34, 197, 94, 0.03) 0%, transparent 50%);
+  }
+}
+
+.task-list-item::before {
+  @apply hidden;
+}
+
+.task-list-item {
+  @apply list-none;
+}
+
+.footnotes {
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
+}
+
+.data-footnote-backref {
+  @apply no-underline;
+}
+
+.csl-entry {
+  @apply my-5;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
+}
+
+.katex-display {
+  overflow: auto hidden;
+}
+
+.content-header-link {
+  opacity: 0;
+  margin-left: -24px;
+  padding-right: 4px;
+}
+
+.content-header:hover .content-header-link,
+.content-header-link:hover {
+  opacity: 1;
+}
+
+.linkicon {
+  display: inline-block;
+  vertical-align: middle;
+}
