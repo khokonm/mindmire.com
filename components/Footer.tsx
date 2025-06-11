@@ -40,13 +40,7 @@ export default function Footer() {
         <div className="wavy-divider mb-4 max-w-xs"></div>
 
         <div className="text-center text-xs text-gray-400 dark:text-gray-500">
-          <div className="mb-2">Built with the swampy vibes of Next.js and Tailwind CSS</div>
-          <Link
-            href="https://github.com/timlrx/tailwind-nextjs-starter-blog"
-            className="transition-colors duration-200 hover:text-green-500"
-          >
-            Based on Tailwind Nextjs Starter Blog
-          </Link>
+          <div>Built with the swampy vibes of Next.js and Tailwind CSS</div>
         </div>
       </div>
     </footer>

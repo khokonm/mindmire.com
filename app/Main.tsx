@@ -90,9 +90,17 @@ export default function Home({ posts }) {
         </div>
       )}
       {siteMetadata.newsletter?.provider && (
-        <div className="flex items-center justify-center pt-8">
-          <div className="mire-card w-full max-w-md p-6">
-            <NewsletterForm />
+        <div className="mt-16 rounded-2xl bg-gradient-to-r from-green-50 to-amber-50 p-8 dark:from-gray-800 dark:to-gray-800">
+          <div className="mx-auto max-w-2xl text-center">
+            <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-white">
+              Stay Updated
+            </h3>
+            <p className="mt-2 font-serif text-gray-600 dark:text-gray-300">
+              Subscribe to get notified about new posts and updates from the mire.
+            </p>
+            <div className="mt-6">
+              <NewsletterForm />
+            </div>
           </div>
         </div>
       )}
