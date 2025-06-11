@@ -156,7 +156,9 @@ export const ReflectionExercise = () => {
       </h3>
       <div className="mb-4">
         <div className="mb-2 flex justify-between text-sm text-blue-600 dark:text-blue-400">
-          <span>Question {currentStep + 1} of {questions.length}</span>
+          <span>
+            Question {currentStep + 1} of {questions.length}
+          </span>
           <span>{Math.round(((currentStep + 1) / questions.length) * 100)}%</span>
         </div>
         <div className="h-2 rounded-full bg-blue-200 dark:bg-blue-800">
@@ -242,10 +244,10 @@ export const HabitReplacement = () => {
             }
             className="rounded-lg border border-green-300 bg-white p-4 text-left transition-all hover:bg-green-100 dark:border-green-700 dark:bg-green-900/50 dark:hover:bg-green-800/50"
           >
-            <div className="text-lg font-bold capitalize text-green-800 dark:text-green-200">
+            <div className="text-green-800 capitalize text-lg font-bold dark:text-green-200">
               {category} Activities
             </div>
-            <div className="text-sm text-green-600 dark:text-green-400">
+            <div className="text-green-800 capitalize text-sm dark:text-green-400">
               {items.length} options available
             </div>
           </button>
@@ -339,20 +341,14 @@ export const BreathingExercise = () => {
           } flex items-center justify-center`}
         >
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-800 dark:text-purple-200">
-              {count}
-            </div>
-            <div className="text-sm uppercase text-purple-600 dark:text-purple-400">
-              {phase}
-            </div>
+            <div className="text-2xl font-bold text-purple-800 dark:text-purple-200">{count}</div>
+            <div className="text-sm text-purple-600 uppercase dark:text-purple-400">{phase}</div>
           </div>
         </div>
       </div>
 
       {cycle > 0 && (
-        <p className="mb-4 text-purple-700 dark:text-purple-300">
-          Completed cycles: {cycle}
-        </p>
+        <p className="mb-4 text-purple-700 dark:text-purple-300">Completed cycles: {cycle}</p>
       )}
 
       <div className="space-x-4">
@@ -374,4 +370,4 @@ export const BreathingExercise = () => {
       </div>
     </div>
   )
-} 
+}

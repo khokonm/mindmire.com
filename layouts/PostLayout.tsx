@@ -56,7 +56,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 xl:grid xl:grid-cols-4 xl:gap-x-8 xl:divide-y-0 dark:divide-gray-700">
-            <div className="pt-8 pb-10 xl:border-b xl:border-gray-200 xl:pt-12 xl:dark:border-gray-700 xl:sticky xl:top-24 xl:self-start xl:max-h-[calc(100vh-6rem)] xl:overflow-y-auto">
+            <div className="sticky pt-8 pb-10 xl:top-24 xl:max-h-[calc(100vh-6rem)] xl:self-start xl:overflow-y-auto xl:border-b xl:border-gray-200 xl:pt-12 xl:dark:border-gray-700">
               <dl>
                 <dt className="sr-only">Authors</dt>
                 <dd>
@@ -94,10 +94,10 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </ul>
                 </dd>
               </dl>
-              
+
               {tags && (
                 <div className="pt-8 xl:pt-12">
-                  <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400 mb-3">
+                  <h2 className="mb-3 text-xs text-gray-500 uppercase tracking-wide dark:text-gray-400">
                     Tags
                   </h2>
                   <div className="flex flex-wrap gap-2">
@@ -107,12 +107,12 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   </div>
                 </div>
               )}
-              
+
               {(next || prev) && (
-                <div className="pt-8 xl:pt-12 space-y-6">
+                <div className="space-y-6 pt-8 xl:pt-12">
                   {prev && prev.path && (
                     <div>
-                      <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400 mb-2">
+                      <h2 className="mb-2 text-xs text-gray-500 uppercase tracking-wide dark:text-gray-400">
                         Previous Article
                       </h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-sm">
@@ -122,7 +122,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   )}
                   {next && next.path && (
                     <div>
-                      <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400 mb-2">
+                      <h2 className="mb-2 text-xs text-gray-500 uppercase tracking-wide dark:text-gray-400">
                         Next Article
                       </h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-sm">
@@ -132,7 +132,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   )}
                 </div>
               )}
-              
+
               <div className="pt-8 xl:pt-12">
                 <Link
                   href={`/${basePath}`}
@@ -143,7 +143,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </Link>
               </div>
             </div>
-            
+
             <div className="divide-y divide-gray-200 xl:col-span-3 xl:row-span-2 xl:pb-0 dark:divide-gray-700">
               <div className="prose dark:prose-invert max-w-none pt-12 pb-10">{children}</div>
               <div className="pt-8 pb-8 text-sm text-gray-700 dark:text-gray-300">
