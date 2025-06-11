@@ -59,9 +59,7 @@ export const EmergencyToolkit = () => {
                 onClick={() => setSelectedTool(tool.id)}
                 className="rounded-lg border border-red-300 bg-white p-4 text-left transition-all hover:bg-red-100 dark:border-red-700 dark:bg-red-900/50 dark:hover:bg-red-800/50"
               >
-                <div className="text-lg font-bold text-red-800 dark:text-red-200">
-                  {tool.title}
-                </div>
+                <div className="text-lg font-bold text-red-800 dark:text-red-200">{tool.title}</div>
                 <div className="text-sm text-red-700 dark:text-red-300">{tool.description}</div>
               </button>
             ))}
@@ -239,15 +237,13 @@ export const HabitReplacement = () => {
         {Object.entries(alternatives).map(([category, items]) => (
           <button
             key={category}
-            onClick={() =>
-              setSelectedCategory(selectedCategory === category ? null : category)
-            }
+            onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
             className="rounded-lg border border-green-300 bg-white p-4 text-left transition-all hover:bg-green-100 dark:border-green-700 dark:bg-green-900/50 dark:hover:bg-green-800/50"
           >
-            <div className="text-green-800 capitalize text-lg font-bold dark:text-green-200">
+            <div className="text-lg font-bold text-green-800 capitalize dark:text-green-200">
               {category} Activities
             </div>
-            <div className="text-green-800 capitalize text-sm dark:text-green-400">
+            <div className="text-sm text-green-800 capitalize dark:text-green-400">
               {items.length} options available
             </div>
           </button>
@@ -256,7 +252,7 @@ export const HabitReplacement = () => {
 
       {selectedCategory && (
         <div className="mt-6 rounded-lg bg-green-100 p-4 dark:bg-green-800/50">
-          <h4 className="mb-3 font-bold capitalize text-green-800 dark:text-green-200">
+          <h4 className="mb-3 font-bold text-green-800 capitalize dark:text-green-200">
             {selectedCategory} Alternatives:
           </h4>
           <div className="space-y-2">

@@ -97,7 +97,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
 
               {tags && (
                 <div className="pt-8 xl:pt-12">
-                  <h2 className="mb-3 text-xs text-gray-500 uppercase tracking-wide dark:text-gray-400">
+                  <h2 className="mb-3 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                     Tags
                   </h2>
                   <div className="flex flex-wrap gap-2">
@@ -112,7 +112,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <div className="space-y-6 pt-8 xl:pt-12">
                   {prev && prev.path && (
                     <div>
-                      <h2 className="mb-2 text-xs text-gray-500 uppercase tracking-wide dark:text-gray-400">
+                      <h2 className="mb-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                         Previous Article
                       </h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-sm">
@@ -122,7 +122,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                   )}
                   {next && next.path && (
                     <div>
-                      <h2 className="mb-2 text-xs text-gray-500 uppercase tracking-wide dark:text-gray-400">
+                      <h2 className="mb-2 text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                         Next Article
                       </h2>
                       <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 text-sm">

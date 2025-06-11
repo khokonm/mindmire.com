@@ -10,7 +10,11 @@ import { notFound } from 'next/navigation'
 
 const POSTS_PER_PAGE = 5
 
-export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tag: string }>
+}): Promise<Metadata> {
   const { tag } = await params
   return genPageMetadata({
     title: `${tag} - ${siteMetadata.title}`,
@@ -38,13 +42,15 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
   const decodedTag = decodeURI(tag)
   const title = decodedTag[0].toUpperCase() + decodedTag.split(' ').join(' ').slice(1)
   const filteredPosts = allCoreContent(
-    sortPosts(allBlogs.filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(decodedTag)))
+    sortPosts(
+      allBlogs.filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(decodedTag))
+    )
   )
-  
+
   if (filteredPosts.length === 0) {
     return notFound()
   }
-  
+
   const pageNumber = 1
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
   const initialDisplayPosts = filteredPosts.slice(0, POSTS_PER_PAGE * pageNumber)
@@ -61,4 +67,4 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
       title={title}
     />
   )
-} 
+}
