@@ -8,7 +8,7 @@ import SearchButton from './SearchButton'
 
 const Header = () => {
   let headerClass =
-    'flex items-center w-full bg-white/90 dark:bg-gray-950/90 backdrop-blur-sm justify-between py-6 border-b border-green-200 dark:border-green-800'
+    'flex items-center w-full bg-white/90 dark:bg-gray-900 backdrop-blur-sm justify-between px-2 sm:px-2 lg:px-2 border-b border-green-200 dark:border-green-800'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0 z-50'
   }
@@ -17,7 +17,7 @@ const Header = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="flex items-center justify-between">
-          <div className="mr-3">
+          <div className="mr-3 scale-50">
             <Logo />
           </div>
           <div className="flex flex-col">
