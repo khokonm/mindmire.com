@@ -315,6 +315,7 @@
     & blockquote {
       border-left: 4px solid var(--color-green-400);
       background: var(--color-green-50);
+      color: var(--color-green-800);
       font-style: italic;
     }
   }
@@ -339,6 +340,7 @@
     & blockquote {
       border-left: 4px solid var(--color-green-600);
       background: var(--color-green-900);
+      color: var(--color-green-100);
     }
   }
 

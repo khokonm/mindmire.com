@@ -109,6 +109,7 @@ export const Blog = defineDocumentType(() => ({
     layout: { type: 'string' },
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
+    interactive: { type: 'boolean', default: false },
   },
   computedFields: {
     ...computedFields,
@@ -127,6 +128,7 @@ export const Blog = defineDocumentType(() => ({
     },
   },
 }))
+
 
 export const Authors = defineDocumentType(() => ({
   name: 'Authors',
