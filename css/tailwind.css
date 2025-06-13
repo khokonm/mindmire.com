@@ -11,13 +11,10 @@
 /* Core theme configuration */
 @theme {
   /* Font families for Mindmire theme */
-  /* --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; */
-  
-  --font-serif: 'Lora', Georgia, serif;
-  /* --font-serif: 'Indie Flower', cursive; */
-  /* --font-display: 'Caveat', cursive; */
-  --font-display: "Indie Flower", cursive;
+  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: var(--font-serif-family), Georgia, serif;
+  --font-display: var(--font-display-family), cursive;
 
   /* Swampy color palette */
   /* Deep greens for primary swamp theme */
@@ -130,7 +127,7 @@
     outline-color: var(--color-primary-500);
   }
 
-  /* Custom heading styles with Caveat font */
+  /* Custom heading styles with display font */
   h1,
   h2,
   h3 {

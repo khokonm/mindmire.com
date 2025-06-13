@@ -10,6 +10,7 @@ import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
+import { fonts } from '@/data/fontConfig'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -55,7 +56,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const basePath = process.env.BASE_PATH || ''
 
   return (
-    <html lang={siteMetadata.language} className="scroll-smooth" suppressHydrationWarning>
+    <html 
+      lang={siteMetadata.language} 
+      className={`scroll-smooth ${fonts.sans.className}`} 
+      suppressHydrationWarning
+      style={{
+        '--font-sans-family': fonts.sans.style.fontFamily,
+        '--font-serif-family': fonts.serif.style.fontFamily,
+        '--font-display-family': fonts.display.style.fontFamily,
+      } as React.CSSProperties}
+    >
       <link
         rel="apple-touch-icon"
         sizes="76x76"
