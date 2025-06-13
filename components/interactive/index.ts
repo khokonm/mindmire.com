@@ -5,6 +5,11 @@ export * from './polls'
 export * from './lust-specific'
 export * from './lust-helpers'
 
+// dopamine specific
+export * from './dopamine/DopamineTracker'
+export * from './dopamine/ScrollTimeCalculator'
+export * from './dopamine/DigitalHabitQuiz'
+
 // Add new component files here and they'll be automatically available in all blog posts
 // Example:
 // export * from './games'
