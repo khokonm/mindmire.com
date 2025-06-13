@@ -5,10 +5,10 @@ import { motion } from 'framer-motion'
 
 interface DopamineTrigger {
   id: string
-  timestamp: Date
-  type: 'notification' | 'scroll' | 'like' | 'message'
+  type: string
   intensity: number
   notes?: string
+  timestamp: number
 }
 
 interface Trigger {
@@ -22,7 +22,13 @@ interface Trigger {
 const STORAGE_KEY = 'dopamine-tracker-data'
 
 export const DopamineTracker = () => {
-  const [triggers, setTriggers] = useState<Trigger[]>([])
+  const [triggers, setTriggers] = useState<DopamineTrigger[]>(() => {
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem(STORAGE_KEY)
+      return savedData ? JSON.parse(savedData) : []
+    }
+    return []
+  })
   const [isTracking, setIsTracking] = useState(false)
   const [selectedType, setSelectedType] = useState<DopamineTrigger['type']>('notification')
   const [intensity, setIntensity] = useState(5)
@@ -145,8 +151,11 @@ export const DopamineTracker = () => {
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm font-medium">Trigger Type</label>
+              <label htmlFor="trigger-type" className="mb-1 block text-sm font-medium">
+                Trigger Type
+              </label>
               <select
+                id="trigger-type"
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value as DopamineTrigger['type'])}
                 className="w-full rounded border p-2 dark:border-gray-600 dark:bg-gray-700"
@@ -159,8 +168,11 @@ export const DopamineTracker = () => {
             </div>
 
             <div>
-              <label className="mb-1 block text-sm font-medium">Intensity (1-10)</label>
+              <label htmlFor="trigger-intensity" className="mb-1 block text-sm font-medium">
+                Intensity (1-10)
+              </label>
               <input
+                id="trigger-intensity"
                 type="range"
                 min="1"
                 max="10"
@@ -173,8 +185,11 @@ export const DopamineTracker = () => {
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">Notes (optional)</label>
+            <label htmlFor="trigger-notes" className="mb-1 block text-sm font-medium">
+              Notes (optional)
+            </label>
             <textarea
+              id="trigger-notes"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               className="w-full rounded border p-2 dark:border-gray-600 dark:bg-gray-700"

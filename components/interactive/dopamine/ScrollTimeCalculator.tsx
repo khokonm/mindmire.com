@@ -13,7 +13,13 @@ interface ScrollSession {
 const STORAGE_KEY = 'scroll-time-data'
 
 export const ScrollTimeCalculator = () => {
-  const [sessions, setSessions] = useState<ScrollSession[]>([])
+  const [sessions, setSessions] = useState<ScrollSession[]>(() => {
+    if (typeof window !== 'undefined') {
+      const savedData = localStorage.getItem(STORAGE_KEY)
+      return savedData ? JSON.parse(savedData) : []
+    }
+    return []
+  })
   const [isTracking, setIsTracking] = useState(false)
   const [currentSession, setCurrentSession] = useState<ScrollSession | null>(null)
   const [selectedPlatform, setSelectedPlatform] = useState('instagram')
@@ -151,11 +157,14 @@ export const ScrollTimeCalculator = () => {
       {!isTracking ? (
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium">Select Platform</label>
+            <label htmlFor="platform-select" className="mb-1 block text-sm font-medium">
+              Platform
+            </label>
             <select
+              id="platform-select"
               value={selectedPlatform}
               onChange={(e) => setSelectedPlatform(e.target.value)}
-              className="w-full rounded border p-2 dark:border-gray-600 dark:bg-gray-700"
+              className="rounded border p-2 dark:border-gray-600 dark:bg-gray-700"
             >
               {platforms.map((platform) => (
                 <option key={platform.id} value={platform.id}>
