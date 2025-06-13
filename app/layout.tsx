@@ -55,14 +55,12 @@ export const metadata: Metadata = {
       { url: '/favicon/favicon.ico', sizes: 'any' },
       { url: '/favicon/icon.svg', type: 'image/svg+xml' },
     ],
-    apple: [
-      { url: '/favicon/apple-touch-icon.png', sizes: '180x180' },
-    ],
+    apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
     other: [
       {
         rel: 'mask-icon',
         url: '/favicon/safari-pinned-tab.svg',
-        color: '#166534'
+        color: '#166534',
       },
     ],
   },
