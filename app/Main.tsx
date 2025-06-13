@@ -34,7 +34,7 @@ export default function Home({ posts }) {
                 key={slug}
                 className="mire-card hover:mire-card-featured p-6 transition-all duration-300"
               >
-                <div className="space-y-4 xl:grid xl:grid-cols-4 xl:items-start xl:gap-x-6 xl:space-y-0">
+                <div className="space-y-4 xl:grid xl:grid-cols-4 xl:items-start xl:space-y-0 xl:gap-x-6">
                   <div className="xl:col-span-1">
                     <dl>
                       <dt className="sr-only">Published on</dt>

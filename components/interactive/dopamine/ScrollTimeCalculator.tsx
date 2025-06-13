@@ -37,7 +37,7 @@ export const ScrollTimeCalculator = () => {
         const sessionsWithDates = parsedData.map((session: any) => ({
           ...session,
           startTime: new Date(session.startTime),
-          endTime: new Date(session.endTime)
+          endTime: new Date(session.endTime),
         }))
         setSessions(sessionsWithDates)
       } catch (error) {
@@ -77,7 +77,7 @@ export const ScrollTimeCalculator = () => {
   }
 
   const deleteSession = (id: string) => {
-    const updatedSessions = sessions.filter(session => session.id !== id)
+    const updatedSessions = sessions.filter((session) => session.id !== id)
     setSessions(updatedSessions)
     if (updatedSessions.length === 0) {
       localStorage.removeItem(STORAGE_KEY)
@@ -87,7 +87,9 @@ export const ScrollTimeCalculator = () => {
   }
 
   const resetTracking = () => {
-    if (window.confirm('Are you sure you want to delete all tracking data? This cannot be undone.')) {
+    if (
+      window.confirm('Are you sure you want to delete all tracking data? This cannot be undone.')
+    ) {
       setSessions([])
       localStorage.removeItem(STORAGE_KEY)
     }
@@ -111,7 +113,7 @@ export const ScrollTimeCalculator = () => {
     const hours = Math.floor(ms / 3600000)
     const minutes = Math.floor((ms % 3600000) / 60000)
     const seconds = Math.floor((ms % 60000) / 1000)
-    
+
     if (hours > 0) {
       return `${hours}h ${minutes}m ${seconds}s`
     } else if (minutes > 0) {
@@ -122,7 +124,7 @@ export const ScrollTimeCalculator = () => {
   }
 
   const getPlatformIcon = (platformId: string) => {
-    return platforms.find(p => p.id === platformId)?.icon || '📱'
+    return platforms.find((p) => p.id === platformId)?.icon || '📱'
   }
 
   const addSession = (session: Omit<ScrollSession, 'id'>) => {
@@ -141,10 +143,7 @@ export const ScrollTimeCalculator = () => {
     <div className="rounded-lg bg-gray-50 p-6 dark:bg-gray-800">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-xl font-bold">Scroll Time Tracker</h2>
-        <button
-          onClick={resetTracking}
-          className="text-sm text-red-600 hover:text-red-700"
-        >
+        <button onClick={resetTracking} className="text-sm text-red-600 hover:text-red-700">
           Reset Data
         </button>
       </div>
@@ -152,11 +151,11 @@ export const ScrollTimeCalculator = () => {
       {!isTracking ? (
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Select Platform</label>
+            <label className="mb-1 block text-sm font-medium">Select Platform</label>
             <select
               value={selectedPlatform}
               onChange={(e) => setSelectedPlatform(e.target.value)}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
+              className="w-full rounded border p-2 dark:border-gray-600 dark:bg-gray-700"
             >
               {platforms.map((platform) => (
                 <option key={platform.id} value={platform.id}>
@@ -168,7 +167,7 @@ export const ScrollTimeCalculator = () => {
 
           <button
             onClick={startTracking}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="w-full rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
           >
             Start Tracking
           </button>
@@ -176,13 +175,14 @@ export const ScrollTimeCalculator = () => {
       ) : (
         <div className="space-y-4">
           <div className="text-center">
-            <p className="text-lg font-semibold mb-2">Currently Tracking</p>
-            <p className="text-2xl mb-4">
-              {getPlatformIcon(selectedPlatform)} {platforms.find(p => p.id === selectedPlatform)?.name}
+            <p className="mb-2 text-lg font-semibold">Currently Tracking</p>
+            <p className="mb-4 text-2xl">
+              {getPlatformIcon(selectedPlatform)}{' '}
+              {platforms.find((p) => p.id === selectedPlatform)?.name}
             </p>
             <button
               onClick={stopTracking}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+              className="rounded bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700"
             >
               Stop Tracking
             </button>
@@ -192,18 +192,18 @@ export const ScrollTimeCalculator = () => {
 
       {sessions.length > 0 && (
         <div className="mt-6">
-          <h4 className="font-semibold mb-2">Your Scroll Sessions</h4>
+          <h4 className="mb-2 font-semibold">Your Scroll Sessions</h4>
           <div className="space-y-2">
             {sessions.map((session) => (
               <motion.div
                 key={session.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-3 bg-white dark:bg-gray-700 rounded shadow-sm relative group"
+                className="group relative rounded bg-white p-3 shadow-sm dark:bg-gray-700"
               >
                 <button
                   onClick={() => deleteSession(session.id)}
-                  className="absolute top-2 right-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-2 right-2 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-red-500"
                 >
                   ×
                 </button>
@@ -211,24 +211,25 @@ export const ScrollTimeCalculator = () => {
                   <div className="flex items-center space-x-2">
                     <span className="text-xl">{getPlatformIcon(session.platform)}</span>
                     <span className="capitalize">
-                      {platforms.find(p => p.id === session.platform)?.name}
+                      {platforms.find((p) => p.id === session.platform)?.name}
                     </span>
                   </div>
                   <div className="text-sm">
                     {getDuration(new Date(session.startTime), new Date(session.endTime))}
                   </div>
                 </div>
-                <div className="text-xs text-gray-500 mt-1">
-                  {new Date(session.startTime).toLocaleTimeString()} - {new Date(session.endTime).toLocaleTimeString()}
+                <div className="mt-1 text-xs text-gray-500">
+                  {new Date(session.startTime).toLocaleTimeString()} -{' '}
+                  {new Date(session.endTime).toLocaleTimeString()}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-4 p-3 bg-gray-100 dark:bg-gray-700 rounded">
-            <h5 className="font-semibold mb-2">Total Scroll Time</h5>
+          <div className="mt-4 rounded bg-gray-100 p-3 dark:bg-gray-700">
+            <h5 className="mb-2 font-semibold">Total Scroll Time</h5>
             <p className="text-xl">{formatTotalTime(getTotalTime())}</p>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
               Across {sessions.length} session{sessions.length !== 1 ? 's' : ''}
             </p>
           </div>
@@ -236,4 +237,4 @@ export const ScrollTimeCalculator = () => {
       )}
     </div>
   )
-} 
+}

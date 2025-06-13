@@ -23,6 +23,7 @@ components/interactive/
 ## ✨ Adding New Components
 
 ### Option 1: Add to Existing File
+
 ```tsx
 // In polls.tsx
 export const StarRating = () => {
@@ -31,6 +32,7 @@ export const StarRating = () => {
 ```
 
 ### Option 2: Create New Category File
+
 ```tsx
 // Create games.tsx
 'use client'
@@ -46,11 +48,13 @@ export const Quiz = () => {
 ```
 
 Then add to `index.ts`:
+
 ```ts
 export * from './games'
 ```
 
 ### Option 3: Post-Specific Components
+
 ```tsx
 // Create my-awesome-post.tsx
 export const CustomVisualization = () => {
@@ -84,16 +88,19 @@ interactive: true
 ## 🏗️ Component Guidelines
 
 ### Required Structure
+
 - Always include `'use client'` directive
 - Export components with descriptive names
 - Use TypeScript for props when needed
 
 ### Styling
+
 - Use Tailwind CSS classes
 - Support both light and dark modes
 - Follow responsive design principles
 
 ### State Management
+
 - Use React hooks (useState, useEffect)
 - Keep state local to components
 - Consider performance for heavy interactions
@@ -111,4 +118,4 @@ interactive: true
 - **Dynamic Imports**: Load components only when needed
 - **Post-Specific Bundles**: Components that only load for specific posts
 - **Shared State**: Cross-component state management
-- **Component Library**: Reusable components across projects 
+- **Component Library**: Reusable components across projects

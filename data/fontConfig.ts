@@ -1,4 +1,13 @@
-import { Inter, Lora, Indie_Flower, Caveat, Playfair_Display, Montserrat, Raleway, Edu_NSW_ACT_Foundation } from 'next/font/google'
+import {
+  Inter,
+  Lora,
+  Indie_Flower,
+  Caveat,
+  Playfair_Display,
+  Montserrat,
+  Raleway,
+  Edu_NSW_ACT_Foundation,
+} from 'next/font/google'
 
 // Initialize all fonts at module level
 const inter = Inter({
@@ -44,20 +53,20 @@ const eduNSWACTFoundation = Edu_NSW_ACT_Foundation({
 
 // Define your font choices here - just change these names to use different fonts
 const FONT_CHOICES = {
-  sans: 'Inter',      // Change this to use a different sans-serif font
-  serif: 'Lora',      // Change this to use a different serif font
-  display: 'Edu NSW ACT Foundation'  // Change this to use a different display font
+  sans: 'Inter', // Change this to use a different sans-serif font
+  serif: 'Lora', // Change this to use a different serif font
+  display: 'Edu NSW ACT Foundation', // Change this to use a different display font
 } as const
 
 // Font mapping - maps font names to their initialized instances
 const FONT_MAP = {
-  'Inter': inter,
-  'Lora': lora,
+  Inter: inter,
+  Lora: lora,
   'Indie Flower': indieFlower,
-  'Caveat': caveat,
+  Caveat: caveat,
   'Playfair Display': playfairDisplay,
-  'Montserrat': montserrat,
-  'Raleway': raleway,
+  Montserrat: montserrat,
+  Raleway: raleway,
   'Edu NSW ACT Foundation': eduNSWACTFoundation,
 } as const
 
@@ -76,7 +85,7 @@ export const fontConfig = {
     serif: 'Lora',
     display: 'Indie Flower',
   },
-  
+
   // Font weights
   weights: {
     light: 300,
@@ -85,7 +94,7 @@ export const fontConfig = {
     semibold: 600,
     bold: 700,
   },
-  
+
   // Font sizes
   sizes: {
     xs: '0.75rem',
@@ -99,4 +108,4 @@ export const fontConfig = {
     '5xl': '3rem',
     '6xl': '3.75rem',
   },
-} 
+}

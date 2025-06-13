@@ -11,7 +11,8 @@
 /* Core theme configuration */
 @theme {
   /* Font families for Mindmire theme */
-  --font-sans: var(--font-sans-family), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+  --font-sans:
+    var(--font-sans-family), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --font-serif: var(--font-serif-family), Georgia, serif;
   --font-display: var(--font-display-family), cursive;
@@ -352,11 +353,8 @@
 
   /* Utility for muddy texture background */
   .bg-muddy {
-    background-image: radial-gradient(
-        circle at 20% 50%,
-        rgba(22, 78, 99, 0.05) 0%,
-        transparent 50%
-      ),
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(22, 78, 99, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 80% 80%, rgba(133, 77, 14, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 40% 20%, rgba(34, 197, 94, 0.03) 0%, transparent 50%);
   }

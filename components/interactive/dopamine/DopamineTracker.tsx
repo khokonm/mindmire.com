@@ -12,11 +12,11 @@ interface DopamineTrigger {
 }
 
 interface Trigger {
-  id: string;
-  type: string;
-  intensity: number;
-  notes?: string;
-  timestamp: number;
+  id: string
+  type: string
+  intensity: number
+  notes?: string
+  timestamp: number
 }
 
 const STORAGE_KEY = 'dopamine-tracker-data'
@@ -37,7 +37,7 @@ export const DopamineTracker = () => {
         // Convert string dates back to Date objects
         const triggersWithDates = parsedData.map((trigger: any) => ({
           ...trigger,
-          timestamp: new Date(trigger.timestamp)
+          timestamp: new Date(trigger.timestamp),
         }))
         setTriggers(triggersWithDates)
       } catch (error) {
@@ -65,13 +65,13 @@ export const DopamineTracker = () => {
     const newTrigger: Trigger = {
       ...trigger,
       id: Math.random().toString(36).substr(2, 9),
-    };
-    setTriggers([...triggers, newTrigger]);
+    }
+    setTriggers([...triggers, newTrigger])
     setNotes('')
   }
 
   const deleteTrigger = (id: string) => {
-    const updatedTriggers = triggers.filter(trigger => trigger.id !== id)
+    const updatedTriggers = triggers.filter((trigger) => trigger.id !== id)
     setTriggers(updatedTriggers)
     if (updatedTriggers.length === 0) {
       localStorage.removeItem(STORAGE_KEY)
@@ -81,7 +81,9 @@ export const DopamineTracker = () => {
   }
 
   const resetTracking = () => {
-    if (window.confirm('Are you sure you want to delete all tracking data? This cannot be undone.')) {
+    if (
+      window.confirm('Are you sure you want to delete all tracking data? This cannot be undone.')
+    ) {
       setTriggers([])
       localStorage.removeItem(STORAGE_KEY)
     }
@@ -109,48 +111,45 @@ export const DopamineTracker = () => {
   }
 
   return (
-    <div className="my-8 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-      <div className="flex justify-between items-center mb-4">
+    <div className="my-8 rounded-lg bg-gray-50 p-6 dark:bg-gray-800">
+      <div className="mb-4 flex items-center justify-between">
         <h3 className="text-xl font-bold">Track Your Dopamine Triggers</h3>
         {triggers.length > 0 && (
-          <button
-            onClick={resetTracking}
-            className="text-sm text-red-600 hover:text-red-700"
-          >
+          <button onClick={resetTracking} className="text-sm text-red-600 hover:text-red-700">
             Reset All Data
           </button>
         )}
       </div>
-      
+
       {!isTracking ? (
         <div className="text-center">
-          <p className="mb-4">Ready to understand your digital habits? Start tracking your dopamine triggers for the next 24 hours.</p>
+          <p className="mb-4">
+            Ready to understand your digital habits? Start tracking your dopamine triggers for the
+            next 24 hours.
+          </p>
           <button
             onClick={startTracking}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
           >
             Start Tracking
           </button>
         </div>
       ) : (
         <div className="space-y-4">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <h4 className="font-semibold">Add New Trigger</h4>
-            <button
-              onClick={stopTracking}
-              className="text-sm text-red-600 hover:text-red-700"
-            >
+            <button onClick={stopTracking} className="text-sm text-red-600 hover:text-red-700">
               Stop Tracking
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium mb-1">Trigger Type</label>
+              <label className="mb-1 block text-sm font-medium">Trigger Type</label>
               <select
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value as DopamineTrigger['type'])}
-                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
+                className="w-full rounded border p-2 dark:border-gray-600 dark:bg-gray-700"
               >
                 <option value="notification">Notification</option>
                 <option value="scroll">Endless Scroll</option>
@@ -160,7 +159,7 @@ export const DopamineTracker = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Intensity (1-10)</label>
+              <label className="mb-1 block text-sm font-medium">Intensity (1-10)</label>
               <input
                 type="range"
                 min="1"
@@ -174,19 +173,21 @@ export const DopamineTracker = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Notes (optional)</label>
+            <label className="mb-1 block text-sm font-medium">Notes (optional)</label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600"
+              className="w-full rounded border p-2 dark:border-gray-600 dark:bg-gray-700"
               rows={2}
               placeholder="What were you doing? How did you feel?"
             />
           </div>
 
           <button
-            onClick={() => addTrigger({ type: selectedType, intensity, notes, timestamp: Date.now() })}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            onClick={() =>
+              addTrigger({ type: selectedType, intensity, notes, timestamp: Date.now() })
+            }
+            className="w-full rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
           >
             Add Trigger
           </button>
@@ -195,24 +196,26 @@ export const DopamineTracker = () => {
 
       {triggers.length > 0 && (
         <div className="mt-6">
-          <h4 className="font-semibold mb-2">Your Triggers</h4>
+          <h4 className="mb-2 font-semibold">Your Triggers</h4>
           <div className="space-y-2">
             {triggers.map((trigger) => (
               <motion.div
                 key={trigger.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="p-3 bg-white dark:bg-gray-700 rounded shadow-sm relative group"
+                className="group relative rounded bg-white p-3 shadow-sm dark:bg-gray-700"
               >
                 <button
                   onClick={() => deleteTrigger(trigger.id)}
-                  className="absolute top-2 right-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-2 right-2 text-gray-400 opacity-0 transition-opacity group-hover:opacity-100 hover:text-red-500"
                 >
                   ×
                 </button>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xl">{getTypeEmoji(trigger.type as DopamineTrigger['type'])}</span>
+                    <span className="text-xl">
+                      {getTypeEmoji(trigger.type as DopamineTrigger['type'])}
+                    </span>
                     <span className="capitalize">{trigger.type}</span>
                   </div>
                   <div className="text-sm text-gray-500">
@@ -220,22 +223,23 @@ export const DopamineTracker = () => {
                   </div>
                 </div>
                 {trigger.notes && (
-                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">
-                    {trigger.notes}
-                  </p>
+                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{trigger.notes}</p>
                 )}
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-4 p-3 bg-gray-100 dark:bg-gray-700 rounded">
-            <h5 className="font-semibold mb-2">Insights</h5>
+          <div className="mt-4 rounded bg-gray-100 p-3 dark:bg-gray-700">
+            <h5 className="mb-2 font-semibold">Insights</h5>
             <p>Average Trigger Intensity: {getAverageIntensity()}/10</p>
             <p>Total Triggers: {triggers.length}</p>
-            <p>Most Common: {getTypeEmoji(triggers[0]?.type as DopamineTrigger['type'])} {triggers[0]?.type}</p>
+            <p>
+              Most Common: {getTypeEmoji(triggers[0]?.type as DopamineTrigger['type'])}{' '}
+              {triggers[0]?.type}
+            </p>
           </div>
         </div>
       )}
     </div>
   )
-} 
+}

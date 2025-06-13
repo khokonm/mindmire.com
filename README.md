@@ -28,17 +28,20 @@ Mindmire is a personal blog with a unique "digital swamp" aesthetic, designed fo
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/khokonm/mindmire.git
 cd mindmire
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -55,6 +58,7 @@ Posts are written in MDX format and stored in the `data/blog/` directory. Each p
 - **Content**: Markdown with optional React components
 
 Example post structure:
+
 ```mdx
 ---
 title: 'Your Post Title'
@@ -80,6 +84,7 @@ Update your author details in `data/authors/default.mdx`.
 ### Site Settings
 
 Edit `data/siteMetadata.js` to configure:
+
 - Site title and description
 - Social media links
 - Analytics providers
@@ -89,6 +94,7 @@ Edit `data/siteMetadata.js` to configure:
 ### Styling
 
 The swampy theme is defined in:
+
 - `css/tailwind.css` - Custom CSS classes and color variables
 - `tailwind.config.js` - Tailwind configuration
 - Font imports from Google Fonts (Open Sans, Lora, Caveat)
@@ -113,6 +119,7 @@ The Mindmire theme features:
 ### Other Platforms
 
 The site can be deployed to any platform supporting Next.js:
+
 - Netlify
 - AWS Amplify
 - Railway
@@ -140,4 +147,4 @@ Found a bug or want to contribute? Please open an issue or submit a pull request
 
 ---
 
-*Remember: The best ideas come from letting thoughts marinate in the mire until they're ready to surface.*
+_Remember: The best ideas come from letting thoughts marinate in the mire until they're ready to surface._
