@@ -15,10 +15,10 @@ const STORAGE_KEY = 'scroll-time-data'
 export const ScrollTimeCalculator = () => {
   const [sessions, setSessions] = useState<ScrollSession[]>(() => {
     if (typeof window !== 'undefined') {
-      const savedData = localStorage.getItem(STORAGE_KEY)
-      return savedData ? JSON.parse(savedData) : []
+      const saved = localStorage.getItem('scrollSessions');
+      return saved ? (JSON.parse(saved) as ScrollSession[]) : [];
     }
-    return []
+    return [];
   })
   const [isTracking, setIsTracking] = useState(false)
   const [currentSession, setCurrentSession] = useState<ScrollSession | null>(null)

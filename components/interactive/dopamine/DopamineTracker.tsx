@@ -24,10 +24,10 @@ const STORAGE_KEY = 'dopamine-tracker-data'
 export const DopamineTracker = () => {
   const [triggers, setTriggers] = useState<DopamineTrigger[]>(() => {
     if (typeof window !== 'undefined') {
-      const savedData = localStorage.getItem(STORAGE_KEY)
-      return savedData ? JSON.parse(savedData) : []
+      const saved = localStorage.getItem('dopamineTriggers');
+      return saved ? (JSON.parse(saved) as DopamineTrigger[]) : [];
     }
-    return []
+    return [];
   })
   const [isTracking, setIsTracking] = useState(false)
   const [selectedType, setSelectedType] = useState<DopamineTrigger['type']>('notification')

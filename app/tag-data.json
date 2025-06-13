@@ -1,13 +1,13 @@
 {
-  "psychology": 1,
-  "digital-wellbeing": 1,
-  "neuroscience": 1,
-  "productivity": 1,
   "self-improvement": 1,
   "motivation": 1,
   "interactive": 1,
   "intro": 1,
   "random": 1,
   "thoughts": 1,
-  "hello": 1
+  "hello": 1,
+  "psychology": 1,
+  "digital-wellbeing": 1,
+  "neuroscience": 1,
+  "productivity": 1
 }
