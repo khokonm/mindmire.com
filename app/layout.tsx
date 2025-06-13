@@ -50,6 +50,29 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [siteMetadata.socialBanner],
   },
+  icons: {
+    icon: [
+      { url: '/favicon/favicon.ico', sizes: 'any' },
+      { url: '/favicon/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/favicon/apple-touch-icon.png', sizes: '180x180' },
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/favicon/safari-pinned-tab.svg',
+        color: '#166534'
+      },
+    ],
+  },
+  manifest: '/favicon/site.webmanifest',
+  themeColor: '#166534',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'MindMire',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
