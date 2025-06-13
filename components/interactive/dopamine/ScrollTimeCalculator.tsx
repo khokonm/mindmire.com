@@ -15,10 +15,10 @@ const STORAGE_KEY = 'scroll-time-data'
 export const ScrollTimeCalculator = () => {
   const [sessions, setSessions] = useState<ScrollSession[]>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('scrollSessions');
-      return saved ? (JSON.parse(saved) as ScrollSession[]) : [];
+      const saved = localStorage.getItem('scrollSessions')
+      return saved ? (JSON.parse(saved) as ScrollSession[]) : []
     }
-    return [];
+    return []
   })
   const [isTracking, setIsTracking] = useState(false)
   const [currentSession, setCurrentSession] = useState<ScrollSession | null>(null)
@@ -38,12 +38,12 @@ export const ScrollTimeCalculator = () => {
     const savedData = localStorage.getItem(STORAGE_KEY)
     if (savedData) {
       try {
-        const parsedData = JSON.parse(savedData)
+        const parsedData = JSON.parse(savedData) as ScrollSession[]
         // Convert string dates back to Date objects
-        const sessionsWithDates = parsedData.map((session: any) => ({
+        const sessionsWithDates = parsedData.map((session) => ({
           ...session,
-          startTime: new Date(session.startTime),
-          endTime: new Date(session.endTime),
+          startTime: new Date(session.startTime).getTime(),
+          endTime: new Date(session.endTime).getTime(),
         }))
         setSessions(sessionsWithDates)
       } catch (error) {

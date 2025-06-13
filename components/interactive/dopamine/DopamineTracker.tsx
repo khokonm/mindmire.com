@@ -24,10 +24,10 @@ const STORAGE_KEY = 'dopamine-tracker-data'
 export const DopamineTracker = () => {
   const [triggers, setTriggers] = useState<DopamineTrigger[]>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('dopamineTriggers');
-      return saved ? (JSON.parse(saved) as DopamineTrigger[]) : [];
+      const saved = localStorage.getItem('dopamineTriggers')
+      return saved ? (JSON.parse(saved) as DopamineTrigger[]) : []
     }
-    return [];
+    return []
   })
   const [isTracking, setIsTracking] = useState(false)
   const [selectedType, setSelectedType] = useState<DopamineTrigger['type']>('notification')
@@ -39,11 +39,11 @@ export const DopamineTracker = () => {
     const savedData = localStorage.getItem(STORAGE_KEY)
     if (savedData) {
       try {
-        const parsedData = JSON.parse(savedData)
-        // Convert string dates back to Date objects
-        const triggersWithDates = parsedData.map((trigger: any) => ({
+        const parsedData = JSON.parse(savedData) as DopamineTrigger[]
+        // Convert string dates back to timestamps
+        const triggersWithDates = parsedData.map((trigger) => ({
           ...trigger,
-          timestamp: new Date(trigger.timestamp),
+          timestamp: new Date(trigger.timestamp).getTime(),
         }))
         setTriggers(triggersWithDates)
       } catch (error) {
