@@ -11,10 +11,18 @@ interface DopamineTrigger {
   notes?: string
 }
 
+interface Trigger {
+  id: string;
+  type: string;
+  intensity: number;
+  notes?: string;
+  timestamp: number;
+}
+
 const STORAGE_KEY = 'dopamine-tracker-data'
 
 export const DopamineTracker = () => {
-  const [triggers, setTriggers] = useState<DopamineTrigger[]>([])
+  const [triggers, setTriggers] = useState<Trigger[]>([])
   const [isTracking, setIsTracking] = useState(false)
   const [selectedType, setSelectedType] = useState<DopamineTrigger['type']>('notification')
   const [intensity, setIntensity] = useState(5)
@@ -53,15 +61,12 @@ export const DopamineTracker = () => {
     setIsTracking(false)
   }
 
-  const addTrigger = () => {
-    const newTrigger: DopamineTrigger = {
+  const addTrigger = (trigger: Omit<Trigger, 'id'>) => {
+    const newTrigger: Trigger = {
+      ...trigger,
       id: Math.random().toString(36).substr(2, 9),
-      timestamp: new Date(),
-      type: selectedType,
-      intensity,
-      notes: notes.trim() || undefined,
-    }
-    setTriggers([...triggers, newTrigger])
+    };
+    setTriggers([...triggers, newTrigger]);
     setNotes('')
   }
 
@@ -180,7 +185,7 @@ export const DopamineTracker = () => {
           </div>
 
           <button
-            onClick={addTrigger}
+            onClick={() => addTrigger({ type: selectedType, intensity, notes, timestamp: Date.now() })}
             className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
           >
             Add Trigger
@@ -207,11 +212,11 @@ export const DopamineTracker = () => {
                 </button>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xl">{getTypeEmoji(trigger.type)}</span>
+                    <span className="text-xl">{getTypeEmoji(trigger.type as DopamineTrigger['type'])}</span>
                     <span className="capitalize">{trigger.type}</span>
                   </div>
                   <div className="text-sm text-gray-500">
-                    {trigger.timestamp.toLocaleTimeString()}
+                    {new Date(trigger.timestamp).toLocaleTimeString()}
                   </div>
                 </div>
                 {trigger.notes && (
@@ -227,7 +232,7 @@ export const DopamineTracker = () => {
             <h5 className="font-semibold mb-2">Insights</h5>
             <p>Average Trigger Intensity: {getAverageIntensity()}/10</p>
             <p>Total Triggers: {triggers.length}</p>
-            <p>Most Common: {getTypeEmoji(triggers[0]?.type)} {triggers[0]?.type}</p>
+            <p>Most Common: {getTypeEmoji(triggers[0]?.type as DopamineTrigger['type'])} {triggers[0]?.type}</p>
           </div>
         </div>
       )}

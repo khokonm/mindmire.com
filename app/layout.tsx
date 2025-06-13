@@ -64,8 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         '--font-sans-family': fonts.sans.style.fontFamily,
         '--font-serif-family': fonts.serif.style.fontFamily,
         '--font-display-family': fonts.display.style.fontFamily,
-      } as React.CSSProperties
-      }
+      } as React.CSSProperties}
     >
       <link
         rel="apple-touch-icon"

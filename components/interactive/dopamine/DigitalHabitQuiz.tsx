@@ -46,10 +46,11 @@ const questions: Question[] = [
     id: 3,
     text: 'How often do you feel anxious when you can\'t check your phone?',
     options: [
-      { value: 1, text: 'Never' },
-      { value: 2, text: 'Rarely' },
-      { value: 3, text: 'Sometimes' },
-      { value: 4, text: 'Often' },
+      { value: 0, text: 'Never' },
+      { value: 1, text: 'Rarely' },
+      { value: 2, text: 'Sometimes' },
+      { value: 3, text: 'Often' },
+      { value: 4, text: 'Very often' },
     ],
   },
   {
@@ -77,12 +78,12 @@ const questions: Question[] = [
 const recommendations: Recommendation[] = [
   {
     score: 5,
-    title: 'Digital Minimalist',
-    description: 'You have a healthy relationship with technology!',
+    title: 'Healthy Digital Habits',
+    description: 'You have a good balance, but there\'s room for improvement.',
     tips: [
-      'Keep up your mindful tech usage',
-      'Share your digital wellbeing practices with others',
-      'Consider digital minimalism as a lifestyle choice',
+      'Set specific times for checking social media',
+      'Use app timers to limit usage',
+      'Practice digital mindfulness',
     ],
   },
   {
@@ -180,37 +181,36 @@ export const DigitalHabitQuiz = () => {
   if (showResults) {
     const recommendation = getRecommendation()
     return (
-      <div className="my-8 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+      <div className="rounded-lg bg-gray-50 p-6 dark:bg-gray-800">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold">Your Results</h2>
+          <button
+            onClick={resetQuiz}
+            className="text-sm text-red-600 hover:text-red-700"
+          >
+            Reset Results
+          </button>
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-4"
         >
-          <div className="flex justify-between items-center">
-            <h3 className="text-xl font-bold">Your Digital Habit Profile</h3>
-            <button
-              onClick={resetQuiz}
-              className="text-sm text-red-600 hover:text-red-700"
-            >
-              Reset Quiz
-            </button>
-          </div>
-          
           {lastQuizDate && (
             <p className="text-sm text-gray-500">
               Last taken: {lastQuizDate.toLocaleDateString()}
             </p>
           )}
           
-          <div className="p-4 bg-white dark:bg-gray-700 rounded-lg shadow-sm">
-            <h4 className="text-lg font-semibold mb-2">{recommendation.title}</h4>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+          <div className="rounded-lg bg-white p-4 shadow-sm dark:bg-gray-700">
+            <h3 className="mb-2 text-lg font-semibold">{recommendation.title}</h3>
+            <p className="mb-4 text-gray-600 dark:text-gray-300">
               {recommendation.description}
             </p>
             
             <div className="space-y-2">
               <h5 className="font-medium">Recommendations:</h5>
-              <ul className="list-disc list-inside space-y-1">
+              <ul className="list-inside list-disc">
                 {recommendation.tips.map((tip, index) => (
                   <li key={index} className="text-gray-600 dark:text-gray-300">
                     {tip}
@@ -225,9 +225,8 @@ export const DigitalHabitQuiz = () => {
   }
 
   return (
-    <div className="my-8 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-      <h3 className="text-xl font-bold mb-4">Digital Habits Quiz</h3>
-      
+    <div className="rounded-lg bg-gray-50 p-6 dark:bg-gray-800">
+      <h2 className="mb-4 text-xl font-bold">Digital Habit Assessment</h2>
       <div className="space-y-4">
         <div className="text-sm text-gray-500">
           Question {currentQuestion + 1} of {questions.length}
@@ -249,7 +248,7 @@ export const DigitalHabitQuiz = () => {
               <button
                 key={option.value}
                 onClick={() => handleAnswer(option.value)}
-                className="w-full p-3 text-left bg-white dark:bg-gray-700 rounded hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                className="w-full rounded bg-white p-3 text-left transition-colors hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
               >
                 {option.text}
               </button>

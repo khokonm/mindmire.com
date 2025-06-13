@@ -5,9 +5,9 @@ import { motion } from 'framer-motion'
 
 interface ScrollSession {
   id: string
-  startTime: Date
-  endTime: Date
   platform: string
+  startTime: number
+  endTime: number
 }
 
 const STORAGE_KEY = 'scroll-time-data'
@@ -56,8 +56,8 @@ export const ScrollTimeCalculator = () => {
   const startTracking = () => {
     const newSession: ScrollSession = {
       id: Math.random().toString(36).substr(2, 9),
-      startTime: new Date(),
-      endTime: new Date(),
+      startTime: new Date().getTime(),
+      endTime: new Date().getTime(),
       platform: selectedPlatform,
     }
     setCurrentSession(newSession)
@@ -68,7 +68,7 @@ export const ScrollTimeCalculator = () => {
     if (currentSession) {
       const updatedSession = {
         ...currentSession,
-        endTime: new Date(),
+        endTime: new Date().getTime(),
       }
       setSessions([...sessions, updatedSession])
       setCurrentSession(null)
@@ -102,7 +102,7 @@ export const ScrollTimeCalculator = () => {
 
   const getTotalTime = () => {
     return sessions.reduce((total, session) => {
-      const diff = session.endTime.getTime() - session.startTime.getTime()
+      const diff = session.endTime - session.startTime
       return total + diff
     }, 0)
   }
@@ -125,18 +125,28 @@ export const ScrollTimeCalculator = () => {
     return platforms.find(p => p.id === platformId)?.icon || '📱'
   }
 
+  const addSession = (session: Omit<ScrollSession, 'id'>) => {
+    const newSession: ScrollSession = {
+      ...session,
+      id: Math.random().toString(36).substr(2, 9),
+    }
+    setSessions([...sessions, newSession])
+  }
+
+  const removeSession = (session: ScrollSession) => {
+    setSessions(sessions.filter((s) => s.id !== session.id))
+  }
+
   return (
-    <div className="my-8 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-xl font-bold">Track Your Scroll Time</h3>
-        {sessions.length > 0 && (
-          <button
-            onClick={resetTracking}
-            className="text-sm text-red-600 hover:text-red-700"
-          >
-            Reset All Data
-          </button>
-        )}
+    <div className="rounded-lg bg-gray-50 p-6 dark:bg-gray-800">
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-xl font-bold">Scroll Time Tracker</h2>
+        <button
+          onClick={resetTracking}
+          className="text-sm text-red-600 hover:text-red-700"
+        >
+          Reset Data
+        </button>
       </div>
 
       {!isTracking ? (
@@ -205,11 +215,11 @@ export const ScrollTimeCalculator = () => {
                     </span>
                   </div>
                   <div className="text-sm">
-                    {getDuration(session.startTime, session.endTime)}
+                    {getDuration(new Date(session.startTime), new Date(session.endTime))}
                   </div>
                 </div>
                 <div className="text-xs text-gray-500 mt-1">
-                  {session.startTime.toLocaleTimeString()} - {session.endTime.toLocaleTimeString()}
+                  {new Date(session.startTime).toLocaleTimeString()} - {new Date(session.endTime).toLocaleTimeString()}
                 </div>
               </motion.div>
             ))}
