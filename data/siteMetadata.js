@@ -8,7 +8,7 @@ const siteMetadata = {
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://mindmire.com',
-  siteRepo: 'https://github.com/khokonm/mindmire',
+  siteRepo: 'https://github.com/khokonm/mindmire.com',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/mindmire-banner.png`,
   mastodon: '',
