@@ -1,0 +1,123 @@
+---
+title: 'Static Sites Suck for Interactivity (So I Added JSX)'
+date: '2025-06-14'
+summary: 'How I built a hybrid blog that combines the best of static sites with interactive React components'
+tags: ['react', 'next.js', 'interactive', 'blog']
+---
+
+# Static Sites Suck for Interactivity (So I Added JSX)
+
+I love static sites. They're fast, secure, and perfect for content that doesn't change often. But they have one major limitation: interactivity. When I wanted to add interactive elements to my blog posts, I had to get creative.
+
+## The Problem
+
+Traditional static sites are great for:
+- Fast page loads
+- SEO optimization
+- Low hosting costs
+- Security (no server-side code)
+
+But they fall short when you want to:
+- Add interactive components
+- Create dynamic user experiences
+- Build engaging content that responds to user input
+- Track user interactions
+
+## The Solution: A Hybrid Approach
+
+I decided to build a hybrid blog that combines the best of both worlds:
+1. Static content for the main blog post
+2. Interactive React components for engaging elements
+
+### How It Works
+
+```typescript
+// Example of how components are integrated into MDX
+import { DopamineTracker } from '@/components/interactive/dopamine/DopamineTracker'
+
+# My Blog Post
+
+Here's some static content...
+
+<DopamineTracker />
+
+More static content...
+```
+
+The key to this approach is using MDX (Markdown + JSX) with Next.js. This allows me to:
+- Write content in Markdown for better readability
+- Import and use React components directly in the content
+- Keep the static generation benefits while adding interactivity
+
+## The Benefits
+
+1. **Best of Both Worlds**
+   - Static content for performance
+   - Interactive elements for engagement
+   - No compromise on either front
+
+2. **Developer Experience**
+   - Write content in familiar Markdown
+   - Use React components when needed
+   - TypeScript support for type safety
+
+3. **User Experience**
+   - Fast initial page load
+   - Progressive enhancement
+   - Rich interactive features
+
+## Implementation Details
+
+The setup involves several key pieces:
+
+1. **MDX Configuration**
+   - Next.js MDX support
+   - Custom components mapping
+   - TypeScript integration
+
+2. **Component Architecture**
+   - Client-side components for interactivity
+   - Server components for static content
+   - Proper hydration handling
+
+3. **State Management**
+   - Local storage for persistence
+   - React state for interactivity
+   - Clean separation of concerns
+
+## Example: The Dopamine Tracker
+
+Let's look at a real example from my blog. The Dopamine Tracker is an interactive component that helps readers understand their digital habits:
+
+<DopamineTracker />
+
+This component:
+- Tracks dopamine triggers in real-time
+- Persists data in local storage
+- Provides insights about digital habits
+- Works seamlessly within the static content
+
+## The Future of Blogging
+
+I believe this hybrid approach represents the future of blogging. Instead of choosing between static sites and full-blown web applications, we can have both:
+
+- Static content for better performance and SEO
+- Interactive elements for better engagement
+- Progressive enhancement for better user experience
+
+## Conclusion
+
+Static sites don't have to be boring. By adding JSX and React components, we can create engaging, interactive content while maintaining the benefits of static generation. The result is a blog that's both performant and engaging.
+
+Try it yourself! The code is open source, and you can find the implementation details in my GitHub repository.
+
+## Resources
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [MDX Documentation](https://mdxjs.com/)
+- [React Documentation](https://reactjs.org/)
+- [My GitHub Repository](https://github.com/yourusername)
+
+---
+
+*What do you think about this hybrid approach? Have you tried something similar? Let me know in the comments below!* 
