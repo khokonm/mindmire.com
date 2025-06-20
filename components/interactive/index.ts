@@ -5,6 +5,7 @@ export * from './polls'
 export * from './lust-specific'
 export * from './lust-helpers'
 export * from './parkinsons-law'
+export * from './hedonic-adaptation'
 
 // dopamine specific
 export * from './dopamine/DopamineTracker'
