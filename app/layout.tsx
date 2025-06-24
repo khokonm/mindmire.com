@@ -116,7 +116,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafb" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-      <link href="mailto:hello@khokon.dev" rel="me" />
       <body className="pl-[calc(100vw-100%)] antialiased">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
